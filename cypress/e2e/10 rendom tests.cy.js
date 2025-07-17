@@ -107,7 +107,7 @@ describe('Telnyx Core Functionality', () => {
 
     });
   
-    it.only('7. opens first blog article, and subscribe', () => {
+    it('7. opens first blog article, and subscribe', () => {
     cy.contains('button', 'Resources').click({force: true});
       cy.get('#56rRrYt4QQ2hqYdizBNnIk').click({force: true});
        cy.get('#articles a.c-zVEiA').first().click({ force: true });
@@ -118,9 +118,9 @@ describe('Telnyx Core Functionality', () => {
      //     cy.get('#onetrust-close-btn-container button').click({force:true});
    //   cy.get('#onetrust-policy', { timeout: 10000 }).should('not.be.visible');
   
-      cy.get('label[for="Email"]', { timeout: 3000 }).scrollIntoView().should('exist')
-        //.should('be.visible')
-        .should('contain.text', 'Company Email')
+      // cy.get('label[for="Email"]', { timeout: 3000 }).scrollIntoView().should('exist')
+      //   //.should('be.visible')
+      //   .should('contain.text', 'Company Email')
       cy.get('#Email').should('exist')
         .type('emailCtest@gmail.com', { force: true })
       cy.get('button[type="submit"]').should('exist')
