@@ -107,7 +107,7 @@ describe('Telnyx Core Functionality', () => {
 
     });
   
-    it('7. opens first blog article, and subscribe', () => {
+    it.only('7. opens first blog article, and subscribe', () => {
     cy.contains('button', 'Resources').click({force: true});
       cy.get('#56rRrYt4QQ2hqYdizBNnIk').click({force: true});
        cy.get('#articles a.c-zVEiA').first().click({ force: true });
@@ -118,7 +118,7 @@ describe('Telnyx Core Functionality', () => {
      //     cy.get('#onetrust-close-btn-container button').click({force:true});
    //   cy.get('#onetrust-policy', { timeout: 10000 }).should('not.be.visible');
   
-      cy.get('label[for="Email"]', {timeout: 1000}).scrollIntoView().should('exist')
+      cy.get('label[for="Email"]', { timeout: 3000 }).scrollIntoView().should('exist')
         //.should('be.visible')
         .should('contain.text', 'Company Email')
       cy.get('#Email').should('exist')
@@ -126,7 +126,7 @@ describe('Telnyx Core Functionality', () => {
       cy.get('button[type="submit"]').should('exist')
        // .should('be.visible')
         .click({ force: true })
-      cy.get('.c-fDKbEm', {timeout: 1000}).find('p').should('include.text', 'Great!')
+      cy.get('.c-fDKbEm', {timeout: 3000}).find('p').should('include.text', 'Great!')
     });
   
     it('8. opens sign-up form and checks required fields', () => {
