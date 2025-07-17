@@ -1,6 +1,6 @@
 describe('Telnyx homepage', () => {
     it('should open homepage', () => {
-      cy.visit('https://telnyx.com/');
+      cy.visit('/');
       cy.contains('speak with our ai assistant').should('be.visible');
     });
   });
