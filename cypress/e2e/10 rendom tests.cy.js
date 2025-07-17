@@ -107,7 +107,7 @@ describe('Telnyx Core Functionality', () => {
 
     });
   
-    it.only('7. opens first blog article, and subscribe', () => {
+    it('7. opens first blog article, and subscribe', () => {
     cy.contains('button', 'Resources').click({force: true});
       cy.get('#56rRrYt4QQ2hqYdizBNnIk').click({force: true});
        cy.get('#articles a.c-zVEiA').first().click({ force: true });
