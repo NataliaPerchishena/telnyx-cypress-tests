@@ -25,29 +25,29 @@ Cypress.on('uncaught:exception', (err, runnable) => {
 //     win.fetch = () => new Promise(() => {});
 //   });
 
-Cypress.on('window:before:load', (win) => {
-    const originalFetch = win.fetch;
+// Cypress.on('window:before:load', (win) => {
+//     const originalFetch = win.fetch;
   
-    win.fetch = function (...args) {
-      const url = typeof args[0] === 'string' ? args[0] : args[0]?.url || '';
+//     win.fetch = function (...args) {
+//       const url = typeof args[0] === 'string' ? args[0] : args[0]?.url || '';
   
-      const blockedDomains = [
-        'openreplay',
-        'vector.co',
-          '**intercom**',
-        'intercom',
-        '/pixel',
-          'challenges',
-          '**challenges**',
-      ];
+//       const blockedDomains = [
+//         'openreplay',
+//         'vector.co',
+//           '**intercom**',
+//         'intercom',
+//         '/pixel',
+//           'challenges',
+//           '**challenges**',
+//       ];
   
-      if (blockedDomains.some(domain => url.includes(domain))) {
-        return new Promise(() => {}); // блокуємо тільки небажані запити
-      }
+//       if (blockedDomains.some(domain => url.includes(domain))) {
+//         return new Promise(() => {}); // блокуємо тільки небажані запити
+//       }
   
-      return originalFetch.apply(this, args);
-    };
-});
+//       return originalFetch.apply(this, args);
+//     };
+// });
   
 Cypress.on('fail', (error, runnable) => {
   console.error('❌ Тест упав!');

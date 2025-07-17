@@ -116,7 +116,7 @@ describe('Telnyx Core Functionality', () => {
     });
   
     it('8. opens sign-up form and checks required fields', () => {
-        cy.get('#main-menu a[href="/sign-up"]', {waitForAnimations:true}).click({force: true});
+        cy.get('#main-menu a[href="/sign-up"]', {timeout: 1000}).click({force: true});
         cy.url().should('include', '/sign-up');
         cy.get('h1').should('contain.text', 'Create a Telnyx account');
       
@@ -129,7 +129,7 @@ describe('Telnyx Core Functionality', () => {
         });
       
         cy.get('button[type="submit"] span[data-content="SIGN UP"]').click({ force: true });
-      cy.wait(2000)
+      cy.wait(3000)
         requiredFields.forEach((selector) => {
           cy.get(selector).should('have.attr', 'aria-invalid', 'true')
           cy.get(selector).invoke('attr', 'aria-errormessage').then((errorId) => {
@@ -148,7 +148,7 @@ describe('Telnyx Core Functionality', () => {
         cy.wait(300);
         cy.xpath('//*[contains(@class, "c-dSaVYE")]/a[@href="/contact-us"]').click({ force: true });
         cy.get('form').should('be.visible');
-        cy.wait(1000)  
+        cy.wait(2000)  
         // cy.get('button[type="submit"]', {waitForAnimations:true}).invoke('text').then((text) => {
         //     expect(text.trim().toLowerCase()).to.include('submit');
         // });

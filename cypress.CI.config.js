@@ -6,8 +6,8 @@ module.exports = defineConfig({
   e2e: {
     baseUrl: 'https://telnyx.com',
     defaultCommandTimeout: 10000,
-    viewportWidth: 1920,
-    viewportHeight: 1080,
+    viewportWidth: 1280,
+    viewportHeight: 720,
     retries: 1,
     
     setupNodeEvents(on, config) {
