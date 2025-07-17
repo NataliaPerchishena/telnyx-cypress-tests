@@ -44,15 +44,12 @@ describe('Telnyx Core Functionality', () => {
     });
   
     it('2. shows cookie banner', () => {
-        cy.get('body').then($body => {
-          if (!$body.find('#onetrust-policy').length) {
-            cy.reload();
-          }
-        });
-      cy.wait(10000)
-        cy.get('#onetrust-policy').should('be.visible').find('a[class="ot-cookie-policy-link"]', { timeout: 50000 }).should('be.visible').and('have.attr', 'href', 'https://telnyx.com/cookie-policy')
-        cy.get('#onetrust-close-btn-container button.onetrust-close-btn-handler').click()
-      });
+      cy.get('#onetrust-policy', { timeout: 30000 }).should('be.visible')
+        .find('a[class="ot-cookie-policy-link"]', { timeout: 30000 })
+        .and('have.attr', 'href', 'https://telnyx.com/cookie-policy');
+    
+      cy.get('#onetrust-close-btn-container button.onetrust-close-btn-btn-handler').click();
+    });
 
     it('3. opens Solutions, checks 8 links, banner & header on opened pages', () => {
         cy.contains('button', 'Solutions').click();
@@ -107,8 +104,8 @@ describe('Telnyx Core Functionality', () => {
        cy.get('h1').should('exist');
        cy.get('#t3vlyisfxe8b9jwv9vf9qn1q').should('not.be.empty').children().should('have.length.greaterThan', 0)
        cy.get('#mktoForm_1470').scrollIntoView().should('exist')
-      cy.wait(2000)
-       cy.get('#onetrust-close-btn-container button.onetrust-close-btn-handler').click({force: true})
+      cy.wait(3000)
+       cy.get('#onetrust-close-btn-container button.onetrust-close-btn-handler', { timeout: 30000 }).click({force: true})
        cy.get('label[for="Email"]', { timeout: 5000 }).should('be.visible').and('contain.text', 'Company Email')
        cy.get('#Email').should('be.visible').type('emailCtest@gmail.com')
       cy.get('button[type="submit"]', { timeout: 5000 }).should('be.visible').click()
