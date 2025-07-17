@@ -43,7 +43,7 @@ describe('Telnyx Core Functionality', () => {
         cy.get('footer a.c-fZcwcz').should('have.length.at.least', 1);
     });
   
-    it.only('2. shows cookie banner', () => {
+    it('2. shows cookie banner', () => {
         cy.get('body').then($body => {
           if (!$body.find('#onetrust-policy').length) {
             cy.reload();
@@ -107,7 +107,7 @@ describe('Telnyx Core Functionality', () => {
        cy.get('h1').should('exist');
        cy.get('#t3vlyisfxe8b9jwv9vf9qn1q').should('not.be.empty').children().should('have.length.greaterThan', 0)
        cy.get('#mktoForm_1470').scrollIntoView().should('exist')
-      cy.wait(1000)
+      cy.wait(2000)
        cy.get('#onetrust-close-btn-container button.onetrust-close-btn-handler').click({force: true})
        cy.get('label[for="Email"]', { timeout: 5000 }).should('be.visible').and('contain.text', 'Company Email')
        cy.get('#Email').should('be.visible').type('emailCtest@gmail.com')
