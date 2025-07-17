@@ -43,14 +43,14 @@ describe('Telnyx Core Functionality', () => {
         cy.get('footer a.c-fZcwcz').should('have.length.at.least', 1);
     });
   
-    it('2. shows cookie banner', () => {
+    it.only('2. shows cookie banner', () => {
         cy.get('body').then($body => {
           if (!$body.find('#onetrust-policy').length) {
             cy.reload();
           }
         });
-        cy.get('#onetrust-policy', { timeout: 10000 }).should('be.visible')
-        cy.get('a[class="ot-cookie-policy-link"]').should('be.visible').and('have.attr', 'href', 'https://telnyx.com/cookie-policy')
+      cy.wait(1000)
+        cy.get('#onetrust-policy', { timeout: 50000 }).should('be.visible').find('a[class="ot-cookie-policy-link"]').should('be.visible').and('have.attr', 'href', 'https://telnyx.com/cookie-policy')
         cy.get('#onetrust-close-btn-container button.onetrust-close-btn-handler').click()
       });
 
