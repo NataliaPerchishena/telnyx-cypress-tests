@@ -5,7 +5,7 @@ describe('Telnyx Core Functionality', () => {
         cy.visit('/');
     })
   
-    it('1. checks homepage elements is visisble: h1, menu, healthcare-coordinator, Lets Talk, Talk to Expert, Log in and Sign up, sections, footer', () => {
+    it('1. check homepage elements is visisble: h1, menu, Lets Talk, Talk to Expert, Log in and Sign up, sections, footer', () => {
         cy.get('body').should('be.visible');
         cy.get('h1').should('contain.text', 'Build Voice AI');
 
@@ -43,17 +43,25 @@ describe('Telnyx Core Functionality', () => {
         cy.get('footer a.c-fZcwcz').should('have.length.at.least', 1);
     });
   
-  it('2. shows cookie banner', () => {
-    cy.wait(50000)
-      cy.get('#onetrust-policy', { timeout: 40000 }).should('be.visible')
-        .find('a[class="ot-cookie-policy-link"]', { timeout: 30000 })
-        .should('be.visible')
-        .and('have.attr', 'href', 'https://telnyx.com/cookie-policy');
+    it('1-3 step. check healthcare-coordinator check-box', () => {
+      
+      cy.get('input#support-specialist').parents('label').should('be.visible')
+      cy.get('#healthcare-coordinator').should('not.be.checked');
+      cy.get('label[for="healthcare-coordinator"]').click({ force: true })
+      cy.get('#healthcare-coordinator').should('be.checked');
+  });
+  
+  // it('2. shows cookie banner', () => {
+  //   cy.wait(50000)
+  //     cy.get('#onetrust-policy', { timeout: 40000 }).should('be.visible')
+  //       .find('a[class="ot-cookie-policy-link"]', { timeout: 30000 })
+  //       .should('be.visible')
+  //       .and('have.attr', 'href', 'https://telnyx.com/cookie-policy');
     
-      cy.get('button.banner-close-button').click({force:true});
-    });
+  //     cy.get('button.onetrust-close-btn-ui').click({force:true});
+  //   });
 
-    it('3. opens Solutions, checks 8 links, banner & header on opened pages', () => {
+    it('3. open Solutions, checks 8 links, banner & header on opened pages', () => {
         cy.contains('button', 'Solutions').click();
 
         cy.get('div[role="menuitem"] a[href^="/solutions/"]').should('have.length', 8).each(($el) => {
@@ -106,10 +114,15 @@ describe('Telnyx Core Functionality', () => {
        cy.get('h1').should('exist');
        cy.get('#t3vlyisfxe8b9jwv9vf9qn1q').should('not.be.empty').children().should('have.length.greaterThan', 0)
        cy.get('#mktoForm_1470').scrollIntoView().should('exist')
-     // cy.wait()
-      cy.get('button.banner-close-button', { timeout: 40000 }).click({force: true})
-       cy.get('label[for="Email"]', { timeout: 5000 }).should('be.visible').and('contain.text', 'Company Email')
-       cy.get('#Email').should('be.visible').type('emailCtest@gmail.com', {force: true})
+
+          cy.get('#onetrust-close-btn-container button').click({force:true});
+
+      cy.get('#onetrust-policy', { timeout: 10000 }).should('not.be.visible');
+  
+       cy.get('label[for="Email"]', { timeout: 10000 }).should('be.visible').and('contain.text', 'Company Email')
+      cy.get('#Email').scrollIntoView()
+      .should('be.visible')
+        .type('emailCtest@gmail.com', { force: true })
       cy.get('button[type="submit"]', { timeout: 5000 })
        // .should('be.visible')
         .click({ force: true })
