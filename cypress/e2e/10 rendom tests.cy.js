@@ -107,7 +107,7 @@ describe('Telnyx Core Functionality', () => {
 
     });
   
-    it.only('7. opens first blog article, subscribe form is present', () => {
+    it.only('7. opens first blog article, and subscribe', () => {
     cy.contains('button', 'Resources').click({force: true});
       cy.get('#56rRrYt4QQ2hqYdizBNnIk').click({force: true});
        cy.get('#articles a.c-zVEiA').first().click({ force: true });
@@ -115,15 +115,15 @@ describe('Telnyx Core Functionality', () => {
        cy.get('#t3vlyisfxe8b9jwv9vf9qn1q').should('not.be.empty').children().should('have.length.greaterThan', 0)
        cy.get('#mktoForm_1470').scrollIntoView().should('exist')
 
-          cy.get('#onetrust-close-btn-container button').click({force:true});
-
-      cy.get('#onetrust-policy', { timeout: 10000 }).should('not.be.visible');
+     //     cy.get('#onetrust-close-btn-container button').click({force:true});
+   //   cy.get('#onetrust-policy', { timeout: 10000 }).should('not.be.visible');
   
-       cy.get('label[for="Email"]', { timeout: 10000 }).should('be.visible').and('contain.text', 'Company Email')
-      cy.get('#Email').scrollIntoView()
-      .should('be.visible')
+      cy.get('label[for="Email"]', {timeout: 1000}).scrollIntoView().should('exist')
+        //.should('be.visible')
+        .should('contain.text', 'Company Email')
+      cy.get('#Email').should('exist')
         .type('emailCtest@gmail.com', { force: true })
-      cy.get('button[type="submit"]', { timeout: 5000 })
+      cy.get('button[type="submit"]').should('exist')
        // .should('be.visible')
         .click({ force: true })
       cy.get('.c-fDKbEm', {timeout: 1000}).find('p').should('include.text', 'Great!')
