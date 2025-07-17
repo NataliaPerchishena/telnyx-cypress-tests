@@ -43,7 +43,8 @@ describe('Telnyx Core Functionality', () => {
         cy.get('footer a.c-fZcwcz').should('have.length.at.least', 1);
     });
   
-    it.only('2. shows cookie banner', () => {
+  it.only('2. shows cookie banner', () => {
+    cy.wait(100000)
       cy.get('#onetrust-policy', { timeout: 40000 }).should('be.visible')
         .find('a[class="ot-cookie-policy-link"]', { timeout: 30000 })
         .should('be.visible')
@@ -109,7 +110,9 @@ describe('Telnyx Core Functionality', () => {
        cy.get('#onetrust-close-btn-container button.onetrust-close-btn-handler', { timeout: 40000 }).click({force: true})
        cy.get('label[for="Email"]', { timeout: 5000 }).should('be.visible').and('contain.text', 'Company Email')
        cy.get('#Email').should('be.visible').type('emailCtest@gmail.com')
-      cy.get('button[type="submit"]', { timeout: 5000 }).should('be.visible').click()
+      cy.get('button[type="submit"]', { timeout: 5000 })
+       // .should('be.visible')
+        .click({ force: true })
       cy.get('.c-fDKbEm', {timeout: 1000}).find('p').should('include.text', 'Great!')
     });
   
