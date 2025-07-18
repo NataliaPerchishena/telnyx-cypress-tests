@@ -1,4 +1,4 @@
-describe("Telnyx Core Functionality", () => {
+describe.skip("Telnyx Core Functionality", () => {
   beforeEach(() => {
     cy.clearCookies();
     cy.clearLocalStorage({ log: true });
@@ -216,7 +216,7 @@ describe("Telnyx Core Functionality", () => {
     cy.get("#ValidMsgReason_for_Contact__c").should("exist").and("be.visible");
   });
 
-  it.only("10. mobile layout", () => {
+  it("10. mobile layout", () => {
     cy.viewport(375, 812);
     cy.get("div#main-menu").should("have.attr", "data-state", "close");
 

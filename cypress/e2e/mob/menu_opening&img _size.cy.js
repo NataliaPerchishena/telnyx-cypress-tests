@@ -7,8 +7,14 @@ describe("Telnyx Core Functionality", () => {
 
   it("1. menu opening and img size", () => {
     // cy.viewport(375, 812);
-    cy.viewport().then((v) => {
-      cy.log(`Viewport is ${v.width}x${v.height}`);
+    const w = Cypress.config("viewportWidth");
+    const h = Cypress.config("viewportHeight");
+    cy.log(`🔍 Config viewport: ${w}x${h}`);
+    console.log(`🔍 Cypress.config viewport: ${w}x${h}`);
+
+    cy.viewport().then((vp) => {
+      cy.log(`🔍 Actual viewport: ${vp.width}x${vp.height}`);
+      console.log(`🔍 Actual viewport: ${vp.width}x${vp.height}`);
     });
     cy.get("div#main-menu").should("have.attr", "data-state", "close");
 
