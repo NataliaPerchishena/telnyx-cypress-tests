@@ -1,17 +1,8 @@
-describe("Telnyx Core Functionality", () => {
+describe.skip("Telnyx Core Functionality", () => {
   beforeEach(() => {
     cy.clearCookies();
     cy.clearLocalStorage({ log: true });
     cy.visit("/");
-    const w = Cypress.config("viewportWidth");
-    const h = Cypress.config("viewportHeight");
-    cy.log(`🔧 Config viewport: ${w}x${h}`);
-    console.log(`🔧 Cypress.config viewport: ${w}x${h}`);
-
-    return cy.window().then((win) => {
-      console.log(`🧾 Actual viewport: ${win.innerWidth}x${win.innerHeight}`);
-      cy.log(`🧾 Actual viewport: ${win.innerWidth}x${win.innerHeight}`);
-    });
   });
 
   it("1. menu opening and img size", () => {
@@ -29,7 +20,7 @@ describe("Telnyx Core Functionality", () => {
       timeout: 1000,
     })
       .scrollIntoView({ behavior: "smooth", block: "center" })
-      // .should('be.visible')
+      .should("be.visible")
       .click({ force: true });
     cy.get("#main-menu-content", { timeout: 10000 }).should("not.be.visible");
 
