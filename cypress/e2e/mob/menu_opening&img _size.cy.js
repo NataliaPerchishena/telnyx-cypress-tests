@@ -3,21 +3,19 @@ describe("Telnyx Core Functionality", () => {
     cy.clearCookies();
     cy.clearLocalStorage({ log: true });
     cy.visit("/");
+    const w = Cypress.config("viewportWidth");
+    const h = Cypress.config("viewportHeight");
+    cy.log(`🔧 Config viewport: ${w}x${h}`);
+    console.log(`🔧 Cypress.config viewport: ${w}x${h}`);
+
+    return cy.window().then((win) => {
+      console.log(`🧾 Actual viewport: ${win.innerWidth}x${win.innerHeight}`);
+      cy.log(`🧾 Actual viewport: ${win.innerWidth}x${win.innerHeight}`);
+    });
   });
 
   it("1. menu opening and img size", () => {
     // cy.viewport(375, 812);
-    const w = Cypress.config("viewportWidth");
-    const h = Cypress.config("viewportHeight");
-    cy.log(`🔍 Config viewport: ${w}x${h}`);
-    console.log(`🔍 Cypress.config viewport: ${w}x${h}`);
-
-    cy.window().then((win) => {
-      const width = win.innerWidth;
-      const height = win.innerHeight;
-      cy.log(`Viewport is ${width}x${height}`);
-      console.log(`Viewport is ${width}x${height}`);
-    });
 
     cy.get("div#main-menu").should("have.attr", "data-state", "close");
 
