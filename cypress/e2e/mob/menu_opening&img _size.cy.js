@@ -5,15 +5,15 @@ describe('Telnyx Core Functionality', () => {
         cy.visit('/');
     })
 
-    it('10. menu opening and img size', () => {
+    it('1. menu opening and img size', () => {
        // cy.viewport(375, 812);
         cy.get('div#main-menu').should('have.attr', 'data-state', 'close')
         
         cy.get('button[aria-controls="main-menu-content"][aria-expanded="false"]').click({ force: true });
         cy.get('div#main-menu').should('have.attr', 'data-state', 'open')
         cy.get('#main-menu-content', { timeout: 10000 }).should('be.visible');
-          
-        cy.get('#main-menu button[aria-controls="main-menu-content"]', { timeout: 5000 })
+        cy.wait(1000);
+        cy.get('#main-menu button[aria-controls="main-menu-content"]', { timeout: 1000 })
         .scrollIntoView({ behavior: 'smooth', block: 'center' })
            .should('be.visible')
             .click({ force: true });

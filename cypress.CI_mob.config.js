@@ -4,6 +4,7 @@ module.exports = defineConfig({
   projectId: "7rza8s", 
 
   e2e: {
+    specPattern: 'cypress/e2e/mob/**/*.cy.js',
     baseUrl: 'https://telnyx.com',
     defaultCommandTimeout: 10000,
     viewportWidth: 375,
