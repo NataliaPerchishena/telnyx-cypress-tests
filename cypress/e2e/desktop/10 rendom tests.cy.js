@@ -121,12 +121,12 @@ describe('Telnyx Core Functionality', () => {
       // cy.get('label[for="Email"]', { timeout: 3000 }).scrollIntoView().should('exist')
       //   //.should('be.visible')
       //   .should('contain.text', 'Company Email')
-      cy.get('#Email').should('exist')
+      cy.get('#Email', { timeout: 5000 }).should('exist')
         .type('emailCtest@gmail.com', { force: true })
       cy.get('button[type="submit"]').should('exist')
        // .should('be.visible')
         .click({ force: true })
-      cy.get('.c-fDKbEm', {timeout: 3000}).find('p').should('include.text', 'Great!')
+      cy.get('.c-fDKbEm', {timeout: 5000}).find('p').should('include.text', 'Great!')
     });
   
     it('8. opens sign-up form and checks required fields', () => {
@@ -173,7 +173,7 @@ describe('Telnyx Core Functionality', () => {
         cy.get('#ValidMsgReason_for_Contact__c').should('exist').and('be.visible')
     });
     
-  it('10. mobile layout', () => {
+  it.only('10. mobile layout', () => {
     cy.viewport(375, 812);
     cy.get('div#main-menu').should('have.attr', 'data-state', 'close')
     

@@ -7,6 +7,9 @@ on:
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        config-file: [cypress.CI.config.js, cypress.CI_mob.config.js]
     env:
       CI: true
     steps:
@@ -25,4 +28,4 @@ jobs:
         run: npx cypress install
 
       - name: Run Cypress tests
-        run: npx cypress run --config-file cypress.CI.config.js --record --key ${{ secrets.CYPRESS_RECORD_KEY }}
+        run: npx cypress run --config-file ${{ matrix.config-file }} --record --key ${{ secrets.CYPRESS_RECORD_KEY }}
