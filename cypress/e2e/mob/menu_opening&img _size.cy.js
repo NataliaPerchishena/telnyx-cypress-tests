@@ -1,4 +1,4 @@
-describe.skip("Telnyx Core Functionality", () => {
+describe("Telnyx Core Functionality", () => {
   beforeEach(() => {
     cy.clearCookies();
     cy.clearLocalStorage({ log: true });
