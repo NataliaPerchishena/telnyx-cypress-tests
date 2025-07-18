@@ -12,10 +12,13 @@ describe("Telnyx Core Functionality", () => {
     cy.log(`🔍 Config viewport: ${w}x${h}`);
     console.log(`🔍 Cypress.config viewport: ${w}x${h}`);
 
-    cy.viewport().then((vp) => {
-      cy.log(`🔍 Actual viewport: ${vp.width}x${vp.height}`);
-      console.log(`🔍 Actual viewport: ${vp.width}x${vp.height}`);
+    cy.window().then((win) => {
+      const width = win.innerWidth;
+      const height = win.innerHeight;
+      cy.log(`Viewport is ${width}x${height}`);
+      console.log(`Viewport is ${width}x${height}`);
     });
+
     cy.get("div#main-menu").should("have.attr", "data-state", "close");
 
     cy.get(
